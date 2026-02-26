@@ -147,6 +147,8 @@ const httpServer = app.listen(port, '0.0.0.0', () => {
   Devlogger.info(`Servidor Express corriendo en el puerto ${port}`);
 });
 
+httpServer.keepAliveTimeout = 120000;
+httpServer.headersTimeout = 120000;
 
 
 //Todo lo Referido a IO
