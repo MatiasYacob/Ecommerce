@@ -40,6 +40,13 @@ import path from 'path';
 
 const app = express();
 const port = process.env.PORT || config.port || 8080;
+const httpServer = app.listen(port, '0.0.0.0', () => {
+  Devlogger.info(`Servidor Express corriendo en el puerto ${port}`);
+});
+
+httpServer.keepAliveTimeout = 120000;
+httpServer.headersTimeout = 120000;
+
 
 // URL de la base de datos de mongo
 const MONGOURL = config.mongoUrl;
@@ -142,10 +149,7 @@ app.use('/apidocs', swaggerUIExpress.serve, swaggerUIExpress.setup(specs))
 const usersExtendRouter = new UsersExtendRouter();
 app.use('/api/extend/api/users', usersExtendRouter.getRouter());
 
-// Creación del servidor HTTP y Socket.IO
-const httpServer = app.listen(port, '0.0.0.0', () => {
-  Devlogger.info(`Servidor Express corriendo en el puerto ${port}`);
-});
+
 
 
 
