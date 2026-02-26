@@ -143,7 +143,7 @@ const usersExtendRouter = new UsersExtendRouter();
 app.use('/api/extend/api/users', usersExtendRouter.getRouter());
 
 // Creación del servidor HTTP y Socket.IO
-const httpServer = app.listen(port, () => {
+const httpServer = app.listen(port, '0.0.0.0', () => {
   Devlogger.info(`Servidor Express corriendo en el puerto ${port}`);
 });
 
